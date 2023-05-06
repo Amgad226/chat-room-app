@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./public/socket-icon.png"
+      type="image/x-icon"
+    />
+
+    <title>socket io</title>
+  </head>
+  <link rel="stylesheet" href="./public/css.css" />
+  <body>
+    <div class=" ">
+
+      <form id="form-username" action="#">
+        <h1>Welcome</h1>
+        <h3>
+          Enter your name and start chatting with other friends in the server
+        </h3>
+        <input
+          required
+          type="text"
+          placeholder="Enter your username"
+          id="username"
+        />
+        <button type="submit">save</button>
+      </form>
+
+      <div id="scroll">
+
+        <div id="messages-container" style="display: none">
+
+          <div id="myName"></div>
+          
+          <button id="exit">exit</button>
+
+          <!-- <div class="container" style="">
+            <span>amgad wattar</span>
+            <p>Hello. How are you <span class="time-right">11:00</span></p>
+          </div>
+
+          <div class="container darker" style="">
+            <span>amgad wattar</span>
+            <p>Hello. How are you ? <span class="time-right">11:00</span></p>
+          </div> -->
+
+        </div>
+        <form id="send-form" action="#" style="display: none">
+          <div class="sender">
+            <input
+              id="send-input"
+              placeholder="Enter your message"
+              type="text"
+            />
+            <button type="submit">send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <img id="background-img" src="public/socket-icon.png" alt="" />
+  </body>
+  <script src="./public/socket.io.js"></script>
+  <script src="./public/index.js"></script>
+</html>

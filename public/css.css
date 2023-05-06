@@ -1,0 +1,374 @@
+  /* Chat containers */
+  * {
+    font-family: "Cowboy Rodeo";
+  }
+
+  body {
+    margin: 0;
+    font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background: linear-gradient(90deg,
+        rgb(0, 0, 0) 0%,
+        rgb(35, 63, 155) 120%);
+
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    background-color: #f1f1f1;
+    /*  */
+    /* 
+    background-image: url(./socket-icon.png);
+    background-repeat:no-repeat ;
+    background-attachment: fixed;
+    background-position: 50% 50% ; 
+    
+    background-size: 300px 300px;  */
+
+
+
+
+  }
+
+  .container {
+    border: 2px solid #dedede;
+    /* background-color: #f1f1f1; */
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    /* opacity: 0.5; */
+  }
+
+  .card {
+    background-color: #999999;
+    /* margin-bottom: 50px; */
+    opacity: 0.9;
+    width: 50%;
+    ;
+    color: #fff;
+    border-radius: 16px;
+
+  }
+
+  /* Darker chat container */
+  .darker {
+    border-color: #b8b6b6;
+    background-color: #2267b0;
+    /* text-align: right; */
+  }
+
+
+  .container>span:first-of-type {
+    /* background-color: rgb(142, 142, 142); */
+    color: #000000;
+    border: 1px #000000 solid;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 4px;
+    /* margin-bottom: 2px; */
+
+    /* background-color: rgb(102, 102, 102); */
+
+
+  }
+
+  .darker>span:first-of-type {
+    /* background-color: wheat; */
+    color: #ffffff;
+    border: 1px #000000 solid;
+    border-radius: 9px;
+    font-size: 20px;
+    /* padding: 4px 4px 1px 4px; */
+    /* background-color: rgb(65, 64, 64); */
+
+  }
+
+  .darker .time-right {
+    color: #ffffff;
+
+  }
+
+  /* Clear floats */
+  .container::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  /* Style images */
+  .container img {
+    /* float: left; */
+    max-width: 60px;
+    width: 100%;
+    height: 100%;
+    margin-right: 20px;
+    /* margin-top: 100%; */
+    border-radius: 50%;
+  }
+
+  /* Style the right image */
+  .container img.right {
+    float: right;
+    height: 100%;
+
+    margin-left: 20px;
+    margin-right: 0;
+  }
+
+  /* Style time text */
+  .time-right {
+    float: right;
+    color: #ffffff;
+  }
+
+  /* Style time text */
+  .time-left {
+    float: left;
+    color: #999;
+  }
+
+
+  /* Center the form */
+  #form-username {
+
+
+    background-color: #3c5979;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: #c2c2c2 .5px solid;
+    border-radius: 15px;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: #2e435f solid 3px;
+
+    /* height: 100vh; */
+  }
+
+  /* Style the heading */
+  h1,
+  h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  /* Style the label and input */
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: larger;
+    color: #ff0000;
+  }
+
+  input[type="text"] {
+    /* width: 30%; */
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Style the button */
+  button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-size: larger;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #0069d9;
+  }
+
+  #myName {
+    /* scale: .8; */
+    width: auto;
+    padding: 10px;
+    /* border: 1px solid #564d4d; */
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    background-color: #8ec4ff42;
+    color: #e8e8e8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: x-large;
+
+    position: fixed;
+    top: 0;
+    right: 20px;
+    z-index: 8;
+    border: #212529 solid 3px;
+    border-radius: 55px;
+    /* opacity: .6; */
+  }
+
+  #exit {
+    width: auto;
+    padding: 10px;
+    /* border: 1px solid #564d4d; */
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    background-color: #8ec4ff42;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: x-large;
+
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 8;
+    border: #212529 solid 3px;
+    border-radius: 55px;
+    cursor: pointer;
+  }
+
+  #send-input {
+    margin-top: 50px;
+  }
+
+  #send-input {
+    position: relative;
+    /* display: block; */
+  }
+
+  .sender {
+    position: fixed;
+    bottom: 0;
+  }
+
+  #messages-container {
+
+    height: 670px;
+    /* or whatever height you want */
+    overflow: auto;
+    /* or "scroll" */
+    background-color: transparent;
+    z-index: -2;
+    /* background-image: url(./socket-icon.png);
+  background-repeat:no-repeat ;
+  background-attachment: fixed;
+  background-position: 50% 50% ; 
+  background-size: 300px 300px;  */
+
+  }
+
+
+  header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    /* background-color: #fff; */
+    /* height: 100px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 
+img {
+  width: 200px;
+  height: auto;
+  transition: transform 0.5s;
+}
+img:hover {
+  transform: rotate(360deg);
+} */
+
+  #background-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25%;
+    margin-top: -12.5%;
+    margin-left: -12.5%;
+    z-index: -1;
+    transition: transform 0.5s;
+    opacity: 0.8;
+
+  }
+
+  #background-img:hover {
+    transform: rotate(360deg);
+  }
+
+
+
+  @media only screen and (max-width: 767px) {
+    /* styles for small screens */
+
+    #myName {
+      scale: 0.7;
+      right: 0px;
+      font-size: larger;
+    }
+
+
+    #background-img {
+      position: absolute;
+      top: 40%;
+      left: 40%;
+      width: 50%;
+      margin-top: -12.5%;
+      margin-left: -12.5%;
+      z-index: -1;
+      transition: transform 0.5s;
+      opacity: 0.8;
+
+    }
+
+
+
+    #form-username {
+
+
+      width: 90%;
+
+
+      /* height: 100vh; */
+    }
+  }
+
+  @media screen and (max-width: 600px) and (orientation: landscape) {
+    body {
+      transform: rotate(90deg);
+      transform-origin: top left;
+      width: 100vh;
+      height: 100vw;
+      overflow-x: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #a7a7a7;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #263754;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
