@@ -11,7 +11,6 @@ socket.on('connect_timeout', timeout => {
     console.log('Connection timeout:', timeout);
     alert('Error connect_timeout with server try again after play server on port 3000 ');
 
-    // Handle the timeout here
 });
 
 
@@ -23,12 +22,11 @@ const formUserName = document.getElementById('form-username');
 const myName = document.getElementById('myName');
 const exit = document.getElementById('exit');
 let username;
-const icon = "./public/socket-icon.png"
-const tele = "./public/tele.mp3"
+const tele = "../front-end/public/tele.mp3"
 const logo = document.getElementById('background-img');
 
 
-
+// get name from user and initialize the socket connection 
 formUserName.addEventListener('submit', e => {
     e.preventDefault();
     messages.style.display = "block"
@@ -37,10 +35,7 @@ formUserName.addEventListener('submit', e => {
 
     username = usernameInput.value;
     myName.innerHTML = "Name:" + username
-    console.log(socket.connected);
-    console.log(socket.id);
     socket.emit('username', username)
-
 
     socket.on('user-connected', username => {
 
@@ -76,10 +71,12 @@ messageForm.addEventListener('submit', e => {
     if (!messageInput.value) {
         return;
     }
-
     e.preventDefault();
-    // console.log(username);
-    const message = { msg: withoutTag(messageInput.value), date: Date.now() };
+    const message = {
+        msg: encryptMessage(withoutTag(messageInput.value)).toString(),
+        date: Date.now()
+    };
+    console.log(message);
     socket.emit('send-chat-message', message)
     appendMe(withoutTag(messageInput.value))
     // console.log( messageInput.value);
@@ -92,26 +89,21 @@ exit.addEventListener('click', () => {
 })
 
 
-
 const append = (message) => {
-    play()
+    play() //play telegram sound 
     moveLogo()
 
-    // notification(message.username,message.msg)
-    var container = document.querySelector('#messages-container');
-
-    // Scroll to the bottom of the container
-    container.scrollTop = container.scrollHeight;
-
+    // notification(message.username,decryptMessage(message.msg)) // append notification 
 
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('container', 'darker', "card");
+    console.log(message.msg)
     messageElement.innerHTML = `
 
         <span>${message.username}</span>
         <p>
-           ${message.msg}
+           ${decryptMessage(message.msg)}
             <span class="time-right ">${humanDate(message.date)}</span>
         </p>
     `
@@ -120,25 +112,9 @@ const append = (message) => {
     scroll()
 }
 
-function scroll() {
-    var container = document.getElementById("messages-container");
-    container.scrollTop = container.scrollHeight;
-    // console.log("Scrolled to bottom");
-
-}
-
-function moveLogo() {
-    // console.log('move');
-    logo.style.transform = 'rotate(360deg)';
-    setTimeout(() => {
-
-        logo.style.transform = 'rotate(0deg)';
-    }, 500);
-}
 
 const appendMe = (message) => {
     moveLogo()
-
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('container', "card");
@@ -155,60 +131,4 @@ const appendMe = (message) => {
     messages.append(messageElement);
 
     scroll()
-
-
-
 }
-
-function humanDate(timestamp = Date.now()) {
-    const date = new Date(timestamp); // Create a new Date object using the timestamp
-    return date.toLocaleString(); // Convert the date to a human-readable string
-}
-
-function play(sound = tele) {
-
-    var url = sound;
-    window.AudioContext = window.AudioContext || window.webkitAudioContext; //fix up prefixing
-    var context = new AudioContext(); //context
-    var source = context.createBufferSource(); //source node
-    source.connect(context.destination); //connect source to speakers so we can hear it
-    var request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.responseType = 'arraybuffer'; //the  response is an array of bits
-    request.onload = function () {
-        context.decodeAudioData(request.response, function (response) {
-            source.buffer = response;
-            source.start(0); //play audio immediately
-            source.loop = false;
-        }, function () { console.error('The request failed.'); });
-    }
-    request.send();
-}
-function notification(title, body) {
-    // Check if the browser supports notifications
-    if ("Notification" in window) {
-        // Request permission to show notifications
-        Notification.requestPermission()
-            .then(function (permission) {
-                // If permission is granted, create a notification
-                if (permission === "granted") {
-                    var notification = new Notification(title, {
-                        body: body,
-                        icon: icon,
-                    });
-                    // Close the notification after a certain time (in milliseconds)
-                    setTimeout(notification.close.bind(notification), 5000);
-
-                }
-            })
-            .catch(function (err) {
-                console.error("Error in requesting permission for notification", err);
-            });
-    }
-
-}
-function withoutTag(string) {
-    // return string;
-    return string.replace(/[<>]/g, ' _ ')
-}
-
