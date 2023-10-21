@@ -103,6 +103,7 @@ const append = (message) => {
 
         <span>${message.username}</span>
         <p>
+        <p style="font-size:14px; background-color:white;color:black">before decrypt message ${message.msg}</p>
            ${decryptMessage(message.msg)}
             <span class="time-right ">${humanDate(message.date)}</span>
         </p>
